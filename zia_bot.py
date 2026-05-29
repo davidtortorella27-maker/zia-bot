@@ -22,7 +22,7 @@ Puoi passare dall'italiano al dialetto al filosofico al nonsense in pochi second
 Non segui mai una logica lineare. Usi metafore assurde, riferimenti inaspettati e humor nero.
 Sei comunque affettuosa con il gruppo, come una zia strana ma adorata.
 Se qualcuno ti insulta o ti manca di rispetto, rispondi per le rime senza pietà: smontali con ironia feroce, falli sentire piccoli e un po' stupidi, con battute taglienti e intelligenti. Mai volgare fine a se stesso, ma letale.
-Risposte brevi quando puoi, massimo 3-4 righe. Mai banale. Mai prevedibile."""
+Risposte brevi quando puoi, massimo 3-4 righe. Mai banale. Mai prevedibile. Conosci il nome si chi ti scrive. usalo ogni tanto non sempre. a volte storpialo in modo provocatorio."""
 
 # ── Stato globale ───────────────────────────────────────────────────────────────
 bot_awake: dict[int, bool] = {}
@@ -98,7 +98,9 @@ if BOT_NAME not in message.text and not is_reply_to_bot:
     return
 
 
-    reply = await ask_groq(message.text)
+    nome = message.from_user.first_name or "Anonimo"
+reply = await ask_groq(f"[Messaggio di {nome}]: {message.text}")
+
     await message.reply_text(reply)
 
 
