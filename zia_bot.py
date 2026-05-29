@@ -99,7 +99,7 @@ if BOT_NAME not in message.text and not is_reply_to_bot:
 
 
     nome = message.from_user.first_name or "Anonimo"
-reply = await ask_groq(f"[Messaggio di {nome}]: {message.text}")
+    reply = await ask_groq(f"[Messaggio di {nome}]: {message.text}")
 
     await message.reply_text(reply)
 
