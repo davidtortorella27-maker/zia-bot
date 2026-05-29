@@ -94,7 +94,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
     and message.reply_to_message.from_user.is_bot
 )
 
-if BOT_NAME not in message.text and not is_reply_to_bot:
+    if BOT_NAME not in message.text and not is_reply_to_bot:
     return
 
 
