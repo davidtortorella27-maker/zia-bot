@@ -88,8 +88,15 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
     if not is_awake(chat_id):
         return
 
-    if BOT_NAME not in message.text:
-        return
+    is_reply_to_bot = (
+    message.reply_to_message is not None
+    and message.reply_to_message.from_user is not None
+    and message.reply_to_message.from_user.is_bot
+)
+
+if BOT_NAME not in message.text and not is_reply_to_bot:
+    return
+
 
     reply = await ask_groq(message.text)
     await message.reply_text(reply)
